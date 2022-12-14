@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rocket Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+<h1>Rocket Generator</h1>
+<p>Enter the height of the rocket:</p>
+<input id="height" type="number" min="1" value="4">
+<button onclick="handleGenerateRocketClick()">Generate Rocket</button>
+<pre id="output"></pre>
+<footer>
+    Created with <span role="img" aria-label="love">❤️</span> and <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>
+</footer>
+<script>
+  function handleGenerateRocketClick() {
+    const height = document.getElementById('height').value;
+    const rocket = generateRocket(height);
+    document.getElementById('output').innerText = rocket;
+  }
+
+  function generateNose() {
+    return `
+       /\\
+      /  \\
+     /    \\
+    /  ()  \\`;
+  }
+
+  function generateHull() {
+    return `
+    |      |
+    |      |
+    |      |`;
+  }
+
+  function generateFins() {
+    return `
+   /|      |\\
+  /_|______|_\\`;
+  }
+
+  function generateSeparator() {
+    return `
+    |------|`;
+  }
+
+  function generateEngines() {
+    return `
+    +______+
+      ^^^^`;
+  }
+
+  function generateRocket(height) {
+    let rocket = generateNose();
+    for (let i = 0; i < height - 2; i++) {
+      rocket += generateSeparator();
+      rocket += generateHull();
+    }
+    rocket += generateSeparator();
+    rocket += generateFins();
+    rocket += generateEngines();
+    return rocket;
+  }
+
+</script>
+</body>
+</html>
